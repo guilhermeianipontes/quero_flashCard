@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -101,88 +100,6 @@ class _TrihasWidgetState extends State<TrihasWidget> {
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 20.0),
-                  child: Text(
-                    'Minhas Trilhas',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 20.0,
-                        ),
-                  ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: AlignmentDirectional(0.0, -1.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 30.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: StreamBuilder<List<TrilhasRecord>>(
-                          stream: queryTrilhasRecord(),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                            List<TrilhasRecord> listViewTrilhasRecordList =
-                                snapshot.data!;
-                            return ListView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: listViewTrilhasRecordList.length,
-                              itemBuilder: (context, listViewIndex) {
-                                final listViewTrilhasRecord =
-                                    listViewTrilhasRecordList[listViewIndex];
-                                return Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        listViewTrilhasRecord.objetivo,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
-                                      Text(
-                                        listViewTrilhasRecord.tema,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
                         ),
                       ),
                     ),

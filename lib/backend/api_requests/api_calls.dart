@@ -62,7 +62,7 @@ class RequestNewCardCall {
 
 class TesteapiCall {
   static Future<ApiCallResponse> call({
-    String? prompt = ' ',
+    String? prompt = ' qual a capital de sao paulo',
   }) {
     final body = '''
 {

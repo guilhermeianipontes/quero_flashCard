@@ -162,25 +162,6 @@ class _FlaskcardsWidgetState extends State<FlaskcardsWidget> {
                                           ?.deckId
                                           ?.toString(),
                                 ));
-                          } else {
-                            await showDialog(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text('chamada api'),
-                                  content: Text(
-                                      (_model.apiResultaz8?.statusCode ?? 200)
-                                          .toString()),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: Text('Ok'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
                           }
 
                           setState(() {});
