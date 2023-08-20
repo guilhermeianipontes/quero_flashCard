@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "15567574895",
+    "project_id": "querocard-93cd0",
+    "storage_bucket": "querocard-93cd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15567574895:android:fab8197908dd7a165bfa9a",
+        "android_client_info": {
+          "package_name": "com.mycompany.querocard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15567574895-0kjas3196bt6tkbrgrra1sd3sps33h4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.querocard",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "15567574895-fbc1ggs35l9hgsea1m6scho9ntg0iioj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbuIGEubsE1EurQZbuAgH8e-2pr_QEVtg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15567574895-fbc1ggs35l9hgsea1m6scho9ntg0iioj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "15567574895-mnjoulum8n6270hpstnhg8usmf84skbf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.querocard"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

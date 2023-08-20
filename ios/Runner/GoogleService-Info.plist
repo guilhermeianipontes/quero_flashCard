@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>15567574895-mnjoulum8n6270hpstnhg8usmf84skbf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.15567574895-mnjoulum8n6270hpstnhg8usmf84skbf</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>15567574895-0kjas3196bt6tkbrgrra1sd3sps33h4q.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC9hYZqPrfVNAo3CQH8PULr6jrCN13LTjQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>15567574895</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycompany.querocard</string>
+	<key>PROJECT_ID</key>
+	<string>querocard-93cd0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>querocard-93cd0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:15567574895:ios:e8e788a743575e4e5bfa9a</string>
+</dict>
+</plist>
