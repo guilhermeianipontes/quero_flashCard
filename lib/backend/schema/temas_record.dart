@@ -16,30 +16,29 @@ class TemasRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id_tema" field.
-  int? _idTema;
-  int get idTema => _idTema ?? 0;
-  bool hasIdTema() => _idTema != null;
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  bool hasId() => _id != null;
 
-  // "name" field.
-  String? _name;
-  String get name => _name ?? '';
-  bool hasName() => _name != null;
+  // "objetivo_id" field.
+  String? _objetivoId;
+  String get objetivoId => _objetivoId ?? '';
+  bool hasObjetivoId() => _objetivoId != null;
 
-  DocumentReference get parentReference => reference.parent.parent!;
+  // "tema" field.
+  String? _tema;
+  String get tema => _tema ?? '';
+  bool hasTema() => _tema != null;
 
   void _initializeFields() {
-    _idTema = castToType<int>(snapshotData['id_tema']);
-    _name = snapshotData['name'] as String?;
+    _id = castToType<int>(snapshotData['id']);
+    _objetivoId = snapshotData['objetivo_id'] as String?;
+    _tema = snapshotData['tema'] as String?;
   }
 
-  static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
-      parent != null
-          ? parent.collection('temas')
-          : FirebaseFirestore.instance.collectionGroup('temas');
-
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('temas').doc();
+  static CollectionReference get collection =>
+      FirebaseFirestore.instance.collection('temas');
 
   static Stream<TemasRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => TemasRecord.fromSnapshot(s));
@@ -72,13 +71,15 @@ class TemasRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createTemasRecordData({
-  int? idTema,
-  String? name,
+  int? id,
+  String? objetivoId,
+  String? tema,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id_tema': idTema,
-      'name': name,
+      'id': id,
+      'objetivo_id': objetivoId,
+      'tema': tema,
     }.withoutNulls,
   );
 
@@ -90,11 +91,14 @@ class TemasRecordDocumentEquality implements Equality<TemasRecord> {
 
   @override
   bool equals(TemasRecord? e1, TemasRecord? e2) {
-    return e1?.idTema == e2?.idTema && e1?.name == e2?.name;
+    return e1?.id == e2?.id &&
+        e1?.objetivoId == e2?.objetivoId &&
+        e1?.tema == e2?.tema;
   }
 
   @override
-  int hash(TemasRecord? e) => const ListEquality().hash([e?.idTema, e?.name]);
+  int hash(TemasRecord? e) =>
+      const ListEquality().hash([e?.id, e?.objetivoId, e?.tema]);
 
   @override
   bool isValidKey(Object? o) => o is TemasRecord;

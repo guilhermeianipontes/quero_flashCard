@@ -58,91 +58,138 @@ class _TrihasWidgetState extends State<TrihasWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.pushNamed('objetivos');
-                },
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  decoration: BoxDecoration(
-                    color: Color(0xD54B39EF),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
+          child: Align(
+            alignment: AlignmentDirectional(0.0, -1.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
                   child: Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Text(
-                      'Crie uma trilha',
-                      style: FlutterFlowTheme.of(context).bodyMedium,
-                    ),
-                  ),
-                ),
-              ),
-              Text(
-                'Minhas Trilhas',
-                style: FlutterFlowTheme.of(context).bodyMedium,
-              ),
-              StreamBuilder<List<TrilhasRecord>>(
-                stream: queryTrilhasRecord(),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed('tudo');
+                        },
+                        child: Container(
+                          width: 150.0,
+                          height: 100.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xD54B39EF),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('tudo');
+                              },
+                              child: Text(
+                                'Criar trilha +',
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    );
-                  }
-                  List<TrilhasRecord> listViewTrilhasRecordList =
-                      snapshot.data!;
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewTrilhasRecordList.length,
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewTrilhasRecord =
-                          listViewTrilhasRecordList[listViewIndex];
-                      return Container(
-                        width: 100.0,
-                        height: 100.0,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 20.0),
+                  child: Text(
+                    'Minhas Trilhas',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 20.0,
+                        ),
+                  ),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: AlignmentDirectional(0.0, -1.0),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 30.0),
+                      child: Container(
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              listViewTrilhasRecord.objetivo,
-                              style: FlutterFlowTheme.of(context).bodyMedium,
-                            ),
-                            Text(
-                              listViewTrilhasRecord.tema,
-                              style: FlutterFlowTheme.of(context).bodyMedium,
-                            ),
-                          ],
+                        child: StreamBuilder<List<TrilhasRecord>>(
+                          stream: queryTrilhasRecord(),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                            List<TrilhasRecord> listViewTrilhasRecordList =
+                                snapshot.data!;
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: listViewTrilhasRecordList.length,
+                              itemBuilder: (context, listViewIndex) {
+                                final listViewTrilhasRecord =
+                                    listViewTrilhasRecordList[listViewIndex];
+                                return Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        listViewTrilhasRecord.objetivo,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                      Text(
+                                        listViewTrilhasRecord.tema,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
                         ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

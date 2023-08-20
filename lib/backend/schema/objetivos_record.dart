@@ -16,19 +16,19 @@ class ObjetivosRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id_obj" field.
-  String? _idObj;
-  String get idObj => _idObj ?? '';
-  bool hasIdObj() => _idObj != null;
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  bool hasId() => _id != null;
 
-  // "name" field.
-  String? _name;
-  String get name => _name ?? '';
-  bool hasName() => _name != null;
+  // "objetivo" field.
+  String? _objetivo;
+  String get objetivo => _objetivo ?? '';
+  bool hasObjetivo() => _objetivo != null;
 
   void _initializeFields() {
-    _idObj = snapshotData['id_obj'] as String?;
-    _name = snapshotData['name'] as String?;
+    _id = castToType<int>(snapshotData['id']);
+    _objetivo = snapshotData['objetivo'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -66,13 +66,13 @@ class ObjetivosRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createObjetivosRecordData({
-  String? idObj,
-  String? name,
+  int? id,
+  String? objetivo,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id_obj': idObj,
-      'name': name,
+      'id': id,
+      'objetivo': objetivo,
     }.withoutNulls,
   );
 
@@ -84,12 +84,12 @@ class ObjetivosRecordDocumentEquality implements Equality<ObjetivosRecord> {
 
   @override
   bool equals(ObjetivosRecord? e1, ObjetivosRecord? e2) {
-    return e1?.idObj == e2?.idObj && e1?.name == e2?.name;
+    return e1?.id == e2?.id && e1?.objetivo == e2?.objetivo;
   }
 
   @override
   int hash(ObjetivosRecord? e) =>
-      const ListEquality().hash([e?.idObj, e?.name]);
+      const ListEquality().hash([e?.id, e?.objetivo]);
 
   @override
   bool isValidKey(Object? o) => o is ObjetivosRecord;

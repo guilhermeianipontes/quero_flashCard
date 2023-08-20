@@ -193,20 +193,11 @@ class _SubtemasWidgetState extends State<SubtemasWidget>
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         4.0, 4.0, 4.0, 4.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        context.pushNamed('null');
-                                      },
-                                      child: Icon(
-                                        Icons.keyboard_arrow_right_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
+                                    child: Icon(
+                                      Icons.keyboard_arrow_right_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
                                     ),
                                   ),
                                 ),

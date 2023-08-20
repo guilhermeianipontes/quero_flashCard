@@ -11,21 +11,82 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class RequestNewCardCall {
   static Future<ApiCallResponse> call({
-    String? apiKey = '',
-    dynamic? promptJson,
+    String? apiKey =
+        'Bearer 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',
+    String? prompt = '',
+    String? pergunta = '',
+    String? resposta = '',
   }) {
-    final prompt = _serializeJson(promptJson);
     final body = '''
 {
   "model": "gpt-3.5-turbo",
-  "messages": ${prompt}
+  "messages": [
+    {
+      "role": "system",
+      "content": "Você é um especialista em identificar a temática e criar novas perguntas dentro do tema identificado. Você receberá como input uma pergunta e uma resposta, e você irá criar uma nova pergunta com o mesmo tema. Pergunta e resposta devem ser objetivas e devem ter aproximadamente o mesmo número de caracteres das perguntas e respostas originais. Utilize '/' entre a pergunta e a resposta."},
+    {
+      "role": "user",
+      "content": "${pergunta},${resposta}"
+    }
+  ],
+  "max_tokens": 100,
+  "temperature": 0
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'RequestNewCard',
-      apiUrl: '/chat/completions',
+      apiUrl: 'https://api.openai.com/v1/chat/completions',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': 'Bearer ${apiKey}',
+        'Authorization':
+            'Bearer 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',
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+    );
+  }
+
+  static dynamic mensagem(dynamic response) => getJsonField(
+        response,
+        r'''$.choices[:].message''',
+      );
+  static dynamic perguntaResposta(dynamic response) => getJsonField(
+        response,
+        r'''$.choices[:].message.content''',
+      );
+}
+
+class TesteapiCall {
+  static Future<ApiCallResponse> call({
+    String? prompt = ' ',
+  }) {
+    final body = '''
+{
+  "model": "gpt-3.5-turbo",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a helpful assistant."
+    },
+    {
+      "role": "user",
+      "content": "${prompt}"
+    }
+  ],
+  "max_tokens": 256,
+  "temperature": 0
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'testeapi',
+      apiUrl: 'https://api.openai.com/v1/chat/completions',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization':
+            'Bearer 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',
       },
       params: {},
       body: body,

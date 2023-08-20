@@ -415,11 +415,11 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: 'Already have an account? ',
+                                          text: 'Já possui uma conta? ',
                                           style: TextStyle(),
                                         ),
                                         TextSpan(
-                                          text: 'Sign In here',
+                                          text: 'Entrar ',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

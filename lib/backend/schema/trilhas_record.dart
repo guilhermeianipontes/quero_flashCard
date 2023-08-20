@@ -16,11 +16,6 @@ class TrilhasRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id_trilha" field.
-  int? _idTrilha;
-  int get idTrilha => _idTrilha ?? 0;
-  bool hasIdTrilha() => _idTrilha != null;
-
   // "objetivo" field.
   String? _objetivo;
   String get objetivo => _objetivo ?? '';
@@ -31,14 +26,19 @@ class TrilhasRecord extends FirestoreRecord {
   String get tema => _tema ?? '';
   bool hasTema() => _tema != null;
 
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  bool hasId() => _id != null;
+
   void _initializeFields() {
-    _idTrilha = castToType<int>(snapshotData['id_trilha']);
     _objetivo = snapshotData['objetivo'] as String?;
     _tema = snapshotData['tema'] as String?;
+    _id = castToType<int>(snapshotData['id']);
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('Trilhas');
+      FirebaseFirestore.instance.collection('trilhas');
 
   static Stream<TrilhasRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => TrilhasRecord.fromSnapshot(s));
@@ -72,15 +72,15 @@ class TrilhasRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createTrilhasRecordData({
-  int? idTrilha,
   String? objetivo,
   String? tema,
+  int? id,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id_trilha': idTrilha,
       'objetivo': objetivo,
       'tema': tema,
+      'id': id,
     }.withoutNulls,
   );
 
@@ -92,14 +92,14 @@ class TrilhasRecordDocumentEquality implements Equality<TrilhasRecord> {
 
   @override
   bool equals(TrilhasRecord? e1, TrilhasRecord? e2) {
-    return e1?.idTrilha == e2?.idTrilha &&
-        e1?.objetivo == e2?.objetivo &&
-        e1?.tema == e2?.tema;
+    return e1?.objetivo == e2?.objetivo &&
+        e1?.tema == e2?.tema &&
+        e1?.id == e2?.id;
   }
 
   @override
   int hash(TrilhasRecord? e) =>
-      const ListEquality().hash([e?.idTrilha, e?.objetivo, e?.tema]);
+      const ListEquality().hash([e?.objetivo, e?.tema, e?.id]);
 
   @override
   bool isValidKey(Object? o) => o is TrilhasRecord;

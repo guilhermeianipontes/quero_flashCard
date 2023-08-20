@@ -258,8 +258,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
+                                    onPressed: () async {
+                                      context.pushNamed('trihas');
                                     },
                                     text: 'Entrar',
                                     options: FFButtonOptions(

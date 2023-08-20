@@ -36,20 +36,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => NavBarPage(),
+      errorBuilder: (context, state) => TrihasWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => NavBarPage(),
+          builder: (context, _) => TrihasWidget(),
         ),
         FFRoute(
           name: 'criar_conta',
           path: '/criarConta',
-          builder: (context, params) => NavBarPage(
-            initialPage: '',
-            page: CriarContaWidget(),
-          ),
+          builder: (context, params) => CriarContaWidget(),
         ),
         FFRoute(
           name: 'login',
@@ -59,64 +56,62 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'trihas',
           path: '/trihas',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'trihas')
-              : NavBarPage(
-                  initialPage: 'trihas',
-                  page: TrihasWidget(),
-                ),
+          builder: (context, params) => TrihasWidget(),
         ),
         FFRoute(
           name: 'flaskcards',
           path: '/flaskcards',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'flaskcards')
-              : NavBarPage(
-                  initialPage: 'flaskcards',
-                  page: FlaskcardsWidget(),
-                ),
-        ),
-        FFRoute(
-          name: 'trilha',
-          path: '/trilha',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'trilha')
-              : NavBarPage(
-                  initialPage: 'trilha',
-                  page: TrilhaWidget(),
-                ),
+          asyncParams: {
+            'tema': getDoc(['temas'], TemasRecord.fromSnapshot),
+          },
+          builder: (context, params) => FlaskcardsWidget(
+            tema: params.getParam('tema', ParamType.Document),
+          ),
         ),
         FFRoute(
           name: 'objetivos',
           path: '/objetivos',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'objetivos')
-              : ObjetivosWidget(),
+          builder: (context, params) => ObjetivosWidget(),
         ),
         FFRoute(
           name: 'temas',
           path: '/temas',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'temas')
-              : NavBarPage(
-                  initialPage: 'temas',
-                  page: TemasWidget(),
-                ),
+          builder: (context, params) => TemasWidget(),
+        ),
+        FFRoute(
+          name: 'trilha',
+          path: '/trilha',
+          asyncParams: {
+            'tema': getDoc(['temas'], TemasRecord.fromSnapshot),
+          },
+          builder: (context, params) => TrilhaWidget(
+            tema: params.getParam('tema', ParamType.Document),
+          ),
         ),
         FFRoute(
           name: 'subtemas',
           path: '/subtemas',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'subtemas')
-              : NavBarPage(
-                  initialPage: 'subtemas',
-                  page: SubtemasWidget(),
-                ),
+          builder: (context, params) => SubtemasWidget(),
         ),
         FFRoute(
           name: 'tudo',
           path: '/tudo',
           builder: (context, params) => TudoWidget(),
+        ),
+        FFRoute(
+          name: 'flash2',
+          path: '/flash2',
+          builder: (context, params) => Flash2Widget(),
+        ),
+        FFRoute(
+          name: 'flaskcardsCopy',
+          path: '/flaskcardsCopy',
+          asyncParams: {
+            'tema': getDoc(['temas'], TemasRecord.fromSnapshot),
+          },
+          builder: (context, params) => FlaskcardsCopyWidget(
+            tema: params.getParam('tema', ParamType.Document),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
